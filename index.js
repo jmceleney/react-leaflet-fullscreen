@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { MapControl, withLeaflet } from 'react-leaflet';
+import * as L from "leaflet";
 import 'leaflet.fullscreen';
+import { createControlComponent } from '@react-leaflet/core'
 
-class FullscreenControl extends MapControl {
-  createLeafletElement(props) {
-    return L.control.fullscreen(props);
-  }
-}
+const FullscreenControl = createControlComponent(
+  (props) => L.control.fullscreen(props)
+)
 
 FullscreenControl.propTypes = {
   position: PropTypes.string,
@@ -18,4 +17,4 @@ FullscreenControl.propTypes = {
   fullscreenElement: PropTypes.bool
 };
 
-export default withLeaflet(FullscreenControl);
+export default FullscreenControl;
